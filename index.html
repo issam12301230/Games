@@ -1,298 +1,298 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<الرأس>
+<head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>شبكة الألعاب – ظ…ظƒطھط¨ط© ط§ظ„ط£ظ„ط¹ط§ط¨</title>
+<title>Games Network — مكتبة الألعاب</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<النمط>
-  :جذر{
+<style>
+  :root{
     --bg:#000;
-    --نيون:#00ffcc؛
+    --neon:#00ffcc;
     --neon-2:#00ffaa;
-    --اللكنة:#00ffcc؛
-    --كتم الصوت:#88ffb3؛
-    --البطاقة:#0b0f10؛
+    --accent:#00ffcc;
+    --muted:#88ffb3;
+    --card:#0b0f10;
     --glass: rgba(255,255,255,0.03);
-    --نصف القطر: 12 بكسل؛
+    --radius:12px;
   }
-  *{حجم الصندوق: صندوق الحدود}
-  html، الجسم {الارتفاع: 100٪؛ الهامش: 0؛ الخلفية: var (-- bg)؛ اللون: var (-- neon)؛ عائلة الخط: Tahoma، Arial، sans-serif؛ overflow-x: مخفي}
-  أ{لون:وراثة}
-  /*المحمل*/
-  #محمل{
-    الموضع: ثابت؛ التضمين: 0؛ العرض: مرن؛ محاذاة العناصر: في المنتصف؛ محاذاة المحتوى: في المنتصف؛ مؤشر Z: 9999؛
-    الخلفية: التدرج الخطي (180 درجة، rgba (0،0،0،0.95)، rgba (0،0،0،0.9));
-    اتجاه مرن: عمود؛ فجوة: 12 بكسل؛
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--neon);font-family:Tahoma,Arial,sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  /* Loader */
+  #loader{
+    position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:9999;
+    background:linear-gradient(180deg,rgba(0,0,0,0.95),rgba(0,0,0,0.9));
+    flex-direction:column; gap:12px;
   }
-  #loader .logo{حجم الخط: 28 بكسل؛وزن الخط: 800؛اللون: var(--neon)؛ظل النص: 0 0 18 بكسل rgba(0,255,204,0.12)}
-  #loader .spinner{العرض: 72 بكسل؛ الارتفاع: 72 بكسل؛ نصف قطر الحدود: 50٪؛ الحدود: 6 بكسل صلب rgba (0، 255، 204، 0.08)؛ لون أعلى الحدود: var (-- نيون)؛ الرسوم المتحركة: دوران 1 ثانية خطي لانهائي}
+  #loader .logo{font-size:28px;font-weight:800;color:var(--neon);text-shadow:0 0 18px rgba(0,255,204,0.12)}
+  #loader .spinner{width:72px;height:72px;border-radius:50%;border:6px solid rgba(0,255,204,0.08);border-top-color:var(--neon);animation:spin 1s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* لوحة قماشية خلف كل شيء */
-  قماش#matrix{الموضع: ثابت؛ اليسار: 0؛ الأعلى: 0؛ العرض: 100٪؛ الارتفاع: 100٪؛ مؤشر z: -3}
+  /* matrix canvas behind everything */
+  canvas#matrix{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-3}
 
-  /*التنقل العلوي*/
-  nav{الموضع: ثابت؛ أعلى: 0؛ فهرس z: 120؛ الخلفية: تدرج خطي (180 درجة، rgba (0، 0، 0، 0.6)، rgba (0، 0، 0، 0.35))؛ مرشح الخلفية: ضبابية (6 بكسل)؛ العرض: مرن؛ محاذاة العناصر: مركز؛ ضبط المحتوى: مسافة بين؛ الحشو: 12 بكسل 20 بكسل؛ الحد السفلي: 1 بكسل rgba ثابت (0، 255، 204، 0.03)}
-  .nav-left{عرض: مرن؛ فجوة: 14 بكسل؛ محاذاة العناصر: مركز}
-  .العلامة التجارية{عرض: مرن؛ محاذاة العناصر: مركز؛ فجوة: 12 بكسل؛ المؤشر: مؤشر}
-  .شعار العلامة التجارية مربع {العرض: 48 بكسل؛ الارتفاع: 48 بكسل؛ نصف قطر الحدود: 10 بكسل؛ الخلفية: تدرج خطي (135 درجة، var (--neon)، var (--neon-2))؛ العرض: مرن؛ محاذاة العناصر: في المنتصف؛ ضبط المحتوى: في المنتصف؛ وزن الخط: 800؛ اللون: #001}
+  /* top nav */
+  nav{position:sticky;top:0;z-index:120;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.35));backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(0,255,204,0.03)}
+  .nav-left{display:flex;gap:14px;align-items:center}
+  .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+  .brand .logo-square{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--neon),var(--neon-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#001}
   .brand h1{margin:0;font-size:18px;color:var(--neon);text-shadow:0 0 8px rgba(0,255,204,0.08)}
-  .nav-right{عرض: مرن؛ فجوة: 10 بكسل؛ محاذاة العناصر: مركز}
-  زر .nav-right{الخلفية: شفافة؛ الحدود: 1 بكسل لون ثابت rgba(0,255,204,0.08)؛ اللون: var(--neon)؛ الحشو: 8 بكسل 12 بكسل؛ نصف قطر الحدود: 10 بكسل؛ المؤشر: مؤشر}
-  زر .nav-right:hover{box-shadow:0 0 18px var(--neon);border-color:var(--neon)}
+  .nav-right{display:flex;gap:10px;align-items:center}
+  .nav-right button{background:transparent;border:1px solid rgba(0,255,204,0.08);color:var(--neon);padding:8px 12px;border-radius:10px;cursor:pointer}
+  .nav-right button:hover{box-shadow:0 0 18px var(--neon);border-color:var(--neon)}
 
-  /*insta عائم */
-  .insta{الموضع: ثابت؛ اليسار: 20 بكسل؛ الأعلى: 20 بكسل؛ مؤشر Z: 140}
-  .insta a{عرض: مرن مضمن؛ محاذاة العناصر: مركز؛ ضبط المحتوى: مركز؛ عرض: 50 بكسل؛ ارتفاع: 50 بكسل؛ نصف قطر الحدود: 50٪؛ خلفية: تدرج خطي (135 درجة، # ff0066، # ffcc00)؛ لون: # fff؛ زخرفة النص: لا شيء؛ ظل الصندوق: 0 0 18 بكسل rgba (255، 0، 120، 0.25)، 0 0 30 بكسل rgba (0، 255، 204، 0.06)؛ انتقال: تحويل .18 ثانية}
+  /* insta floating */ 
+  .insta{position:fixed;left:20px;top:20px;z-index:140}
+  .insta a{display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#ff0066,#ffcc00);color:#fff;text-decoration:none;box-shadow:0 0 18px rgba(255,0,120,0.25),0 0 30px rgba(0,255,204,0.06);transition:transform .18s}
   .insta a:hover{transform:translateY(-6px) rotate(-6deg);box-shadow:0 0 35px rgba(0,255,204,0.5)}
 
-  /* تَخطِيط */
-  .container{العرض الأقصى: 1300 بكسل؛ الهامش: 18 بكسل تلقائيًا؛ الحشو: 0 18 بكسل}
-  الرئيسية{العرض: الشبكة؛ أعمدة قالب الشبكة: 1fr؛ الفجوة: 18 بكسل}
+  /* layout */
+  .container{max-width:1300px;margin:18px auto;padding:0 18px}
+  main{display:grid;grid-template-columns:1fr;gap:18px}
 
-  /* البطل */
-  .hero{عرض: مرن؛ محاذاة العناصر: مركز؛ ضبط المحتوى: مسافة بين؛ فجوة: 20 بكسل؛ حشو: 36 بكسل؛ نصف قطر الحدود: 14 بكسل؛ خلفية: تدرج خطي (180 درجة، rgba (0، 255، 204، 0.02)، rgba (0، 255، 204، 0.01))؛ ظل الصندوق: 0 6 بكسل 30 بكسل rgba (0، 255، 204، 0.03)}
+  /* hero */
+  .hero{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:36px;border-radius:14px;background:linear-gradient(180deg,rgba(0,255,204,0.02),rgba(0,255,204,0.01));box-shadow:0 6px 30px rgba(0,255,204,0.03)}
   .hero .left{max-width:720px}
-  .hero h2{حجم الخط: 34 بكسل؛ الهامش: 0 0 10 بكسل؛ اللون: var(--neon)؛ ظل النص: 0 0 12 بكسل rgba(0,255,204,0.08)}
-  .hero p{الهامش: 0 0 16 بكسل؛ اللون: rgba(255,255,255,0.7)}
-  .cta{عرض: مرن مضمن؛ فجوة: 12 بكسل؛ محاذاة العناصر: مركز؛ مساحة: 12 بكسل 18 بكسل؛ نصف قطر الحدود: 12 بكسل؛ خلفية: تدرج خطي (90 درجة، var (--neon)، var (--neon-2))؛ لون: #001؛ وزن الخط: 800؛ مؤشر: مؤشر؛ ظل الصندوق: 0 8 بكسل 30 بكسل rgba (0،255،204، 0.14)}
-  .hero .right{العرض: 360 بكسل؛ الحد الأدنى للارتفاع: 220 بكسل؛ نصف قطر الحدود: 12 بكسل؛ تجاوز السعة: مخفي؛ الخلفية: تدرج خطي (180 درجة، rgba (255، 255، 255، 0.03)، شفاف)؛ العرض: مرن؛ محاذاة العناصر: في المنتصف؛ ضبط المحتوى: في المنتصف}
+  .hero h2{font-size:34px;margin:0 0 10px;color:var(--neon);text-shadow:0 0 12px rgba(0,255,204,0.08)}
+  .hero p{margin:0 0 16px;color:rgba(255,255,255,0.7)}
+  .cta{display:inline-flex;gap:12px;align-items:center;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#001;font-weight:800;cursor:pointer;box-shadow:0 8px 30px rgba(0,255,204,0.14)}
+  .hero .right{width:360px;min-height:220px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);display:flex;align-items:center;justify-content:center}
 
-  /* أقسام علامات التبويب التنقلية */
-  .أقسام التنقل{عرض: مرن؛فجوة: 10 بكسل؛لف مرن:لف؛هامش علوي: 8 بكسل}
+  /* sections nav tabs */
+  .sections-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
   .tab{padding:8px 12px;border-radius:10px;background:rgba(0,0,0,0.5);border:1px solid rgba(0,255,204,0.04);cursor:pointer}
-  .tab.active{الخلفية: تدرج خطي (90 درجة، var (--neon)، var (--neon-2))؛ اللون: #001؛ وزن الخط: 800؛ ظل الصندوق: 0 6 بكسل 30 بكسل rgba (0،255،204، 0.12)}
+  .tab.active{background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#001;font-weight:800;box-shadow:0 6px 30px rgba(0,255,204,0.12)}
 
-  /*أقسام التخطيط*/
+  /* layout sections */
   .page{display:none;animation:fadeIn .4s ease;min-height:60vh;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,0.22),rgba(0,0,0,0.14));box-shadow:0 8px 40px rgba(0,0,0,0.6)}
   .page.active{display:block}
-  @keyframes fadeIn{من{الشفافية: 0؛ التحويل: ترجمة Y (14 بكسل)} إلى{الشفافية: 1؛ التحويل: لا شيء}}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
 
-  /* تقسيم منطقة الألعاب */
+  /* games area split */
   .games-wrap{display:grid;grid-template-columns:300px 1fr;gap:18px}
-  /* مرشحات الشريط الجانبي */
-  .sidebar{الخلفية: تدرج خطي (180 درجة، rgba (255، 255، 255، 0.02)، شفاف)؛ الحشو: 14 بكسل؛ نصف قطر الحدود: 12 بكسل؛ الحد: 1 بكسل صلب rgba (0، 255، 204، 0.04)}
-  .مجموعة المرشح{الهامش السفلي: 12 بكسل}
-  . تسمية مجموعة المرشح {العرض: كتلة؛ اللون: rgba (255، 255، 255، 0.8)؛ الهامش السفلي: 6 بكسل}
-  .filter-group select،.filter-group input{العرض: 100%؛ الحشو: 10 بكسل؛ نصف قطر الحدود: 8 بكسل؛ الحدود: لا شيء؛ الخلفية: #071218؛ اللون: var(--neon)؛ ظل الصندوق: inset 0 0 8 بكسل rgba(0,255,204,0.02)}
-  .مربعات الاختيار{عرض: مرن؛ التفاف مرن: التفاف؛ فجوة: 8 بكسل}
+  /* sidebar filters */
+  .sidebar{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;border:1px solid rgba(0,255,204,0.04)}
+  .filter-group{margin-bottom:12px}
+  .filter-group label{display:block;color:rgba(255,255,255,0.8);margin-bottom:6px}
+  .filter-group select,.filter-group input{width:100%;padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon);box-shadow:inset 0 0 8px rgba(0,255,204,0.02)}
+  .checkboxes{display:flex;flex-wrap:wrap;gap:8px}
   .chip{padding:6px 10px;border-radius:999px;background:rgba(0,255,204,0.04);cursor:pointer;border:1px solid rgba(0,255,204,0.02)}
 
-  /* شبكة اللعبة والبطاقة المتقدمة */
-  .grid{عرض: شبكة؛ أعمدة قالب الشبكة: تكرار (ملء تلقائي، الحد الأدنى الأقصى (220 بكسل، 1fr))؛ الفجوة: 12 بكسل}
-  .card{الخلفية: تدرج خطي (180 درجة، rgba (255، 255، 255، 0.02)، شفاف)؛ نصف قطر الحدود: 12 بكسل؛ تجاوز السعة: مخفي؛ الحدود: 1 بكسل صلب rgba (255، 255، 255، 0.03)؛ الموضع: نسبي؛ نمط التحويل: الحفاظ على ثلاثي الأبعاد؛ الانتقال: تحويل .35 ثانية، ظل الصندوق .35 ثانية}
+  /* game grid & card advanced */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);position:relative;transform-style:preserve-3d;transition:transform .35s,box-shadow .35s}
   .card:hover{transform:translateY(-10px) rotateX(4deg) rotateY(-4deg);box-shadow:0 10px 40px rgba(0,255,204,0.12)}
   .thumb{height:150px;background:#222 url('https://placehold.co/600x360?text=No') center/cover no-repeat}
   .card-body{padding:12px;display:flex;flex-direction:column;gap:8px}
-  .بطاقة h3{الهامش: 0؛ حجم الخط: 16 بكسل؛ اللون: #eafff5}
-  .meta{عرض: مرن؛ محاذاة المحتوى: مسافة بين؛ فجوة: 8 بكسل؛ محاذاة العناصر: مركز}
+  .card h3{margin:0;font-size:16px;color:#eafff5}
+  .meta{display:flex;justify-content:space-between;gap:8px;align-items:center}
   .rating{display:inline-flex;gap:6px;align-items:center}
-  .rating .bar{العرض: 80 بكسل؛ الارتفاع: 8 بكسل؛ الخلفية: rgba(255,255,255,0.06)؛ نصف قطر الحدود: 6 بكسل؛ تجاوز السعة: مخفي}
+  .rating .bar{width:80px;height:8px;background:rgba(255,255,255,0.06);border-radius:6px;overflow:hidden}
   .rating .fill{height:100%;background:linear-gradient(90deg,var(--neon),var(--neon-2));width:40%}
-  .المنصات{عرض: مرن؛فجوة: 6 بكسل؛محاذاة العناصر: مركز}
-  .plat{حجم الخط: 14 بكسل؛ الحشو: 6 بكسل 8 بكسل؛ نصف قطر الحدود: 8 بكسل؛ الخلفية: rgba(0,0,0,0.35)؛ اللون: var(--neon)؛}
+  .platforms{display:flex;gap:6px;align-items:center}
+  .plat{font-size:14px;padding:6px 8px;border-radius:8px;background:rgba(0,0,0,0.35);color:var(--neon);}
 
-  .actions{عرض: مرن؛ فجوة: 8 بكسل؛ محاذاة العناصر: مركز}
-  .btn-ghost{الحشو: 8 بكسل 10 بكسل؛ نصف قطر الحدود: 8 بكسل؛ الخلفية: شفافة؛ الحدود: 1 بكسل لون ثابت rgba(0,255,204,0.06)؛ اللون: var(--neon)؛ المؤشر: مؤشر}
-  .fav{هامش يسار: تلقائي؛ المؤشر: مؤشر؛ حجم الخط: 18 بكسل}
+  .actions{display:flex;gap:8px;align-items:center}
+  .btn-ghost{padding:8px 10px;border-radius:8px;background:transparent;border:1px solid rgba(0,255,204,0.06);color:var(--neon);cursor:pointer}
+  .fav{margin-left:auto;cursor:pointer;font-size:18px}
 
-  /* دائري (رائج/جديد) */
-  .carousel{عرض: مرن؛ فجوة: 12 بكسل؛ تجاوز: تلقائي؛ حشوة أسفل: 8 بكسل}
-  .carousel::-webkit-scrollbar{الارتفاع: 8 بكسل}
-  .بطاقة دوارة {الحد الأدنى للعرض: 220 بكسل؛ نصف قطر الحدود: 12 بكسل؛ تجاوز السعة: مخفي؛ الحد: 1 بكسل صلب rgba (255، 255، 255، 0.03)؛ الخلفية: تدرج خطي (180 درجة، rgba (255، 255، 255، 0.02)، شفاف)}
-  .شارة{الموضع:مطلق؛أعلى:10 بكسل؛يسار:10 بكسل؛خلفية:متغير(--نيون)؛اللون:#001؛الحشو:6 بكسل 10 بكسل؛نصف قطر الحدود:8 بكسل؛وزن الخط:800}
+  /* carousel (trending/new) */
+  .carousel{display:flex;gap:12px;overflow:auto;padding-bottom:8px}
+  .carousel::-webkit-scrollbar{height:8px}
+  .carousel-card{min-width:220px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+  .badge{position:absolute;top:10px;left:10px;background:var(--neon);color:#001;padding:6px 10px;border-radius:8px;font-weight:800}
 
-  /* تفاصيل النافذة المنبثقة */
-  .modal{الموضع: ثابت؛ التضمين: 0؛ العرض: لا شيء؛ محاذاة العناصر: المركز؛ ضبط المحتوى: المركز؛ الخلفية: التدرج الخطي (rgba (0،0،0،0.6)، rgba (0،0،0،0.85))؛ مؤشر z: 999}
+  /* popup modal details */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.85));z-index:999}
   .modal.open{display:flex}
-  .بطاقة نموذجية{العرض: الحد الأدنى (900 بكسل، 96٪)؛ الخلفية: التدرج الخطي (180 درجة، #061014، #0b1214)؛ الحشو: 18 بكسل؛ نصف قطر الحدود: 12 بكسل؛ الحدود: 1 بكسل لون أحمر أخضر أزرق موحد (0، 255، 204، 0.06)؛ ظل الصندوق: 0 20 بكسل 60 بكسل لون أحمر أخضر أزرق موحد (0، 0، 0، 0.6)؛ اللون: #eafff5}
-  .modal-grid{عرض: شبكة؛ أعمدة قالب الشبكة: 1 من 2 من؛ فجوة: 12 بكسل}
-  .modal img{العرض: 100%؛ الارتفاع: 260 بكسل؛ ملاءمة الكائن: الغلاف؛ نصف قطر الحدود: 8 بكسل}
-  .إغلاق-btn{الخلفية:#111؛ الحشو:8 بكسل 12 بكسل؛ نصف قطر الحدود:8 بكسل؛ اللون: var(--neon)؛ الحدود: 1 بكسل لون ثابت rgba(0,255,204,0.04)؛ المؤشر: المؤشر}
+  .modal-card{width:min(900px,96%);background:linear-gradient(180deg,#061014, #0b1214);padding:18px;border-radius:12px;border:1px solid rgba(0,255,204,0.06);box-shadow:0 20px 60px rgba(0,0,0,0.6);color:#eafff5}
+  .modal-grid{display:grid;grid-template-columns:1fr 2fr;gap:12px}
+  .modal img{width:100%;height:260px;object-fit:cover;border-radius:8px}
+  .close-btn{background:#111;padding:8px 12px;border-radius:8px;color:var(--neon);border:1px solid rgba(0,255,204,0.04);cursor:pointer}
 
-  /*التذييل*/
-  تذييل{هامش علوي: 18 بكسل؛ حشو: 18 بكسل؛ حد علوي: 1 بكسل صلب rgba(0,255,204,0.03)؛ عرض: مرن؛ ضبط المحتوى: مسافة بين؛ محاذاة العناصر: مركز؛ فجوة: 12 بكسل}
-  روابط التذييل {عرض: مرن؛ فجوة: 12 بكسل؛ محاذاة العناصر: مركز}
-  نسخة التذييل {اللون: rgba (255، 255، 255، 0.6)}
+  /* footer */
+  footer{margin-top:18px;padding:18px;border-top:1px solid rgba(0,255,204,0.03);display:flex;justify-content:space-between;align-items:center;gap:12px}
+  footer .links{display:flex;gap:12px;align-items:center}
+  footer .copy{color:rgba(255,255,255,0.6)}
 
-  /* استجابة صغيرة */
-  @media(العرض الأقصى: 880 بكسل){
+  /* small responsiveness */
+  @media(max-width:880px){
     .games-wrap{grid-template-columns:1fr}
-    .hero{الاتجاه المرن:العمود}
-    .بطل .يمين{العرض: 100%}
-    .إنستا{يسار:12 بكسل؛أعلى:12 بكسل}
+    .hero{flex-direction:column}
+    .hero .right{width:100%}
+    .insta{left:12px;top:12px}
   }
 </style>
 </head>
-<الجسم>
+<body>
 
-<!-- محمل -->
-<div id="loader"><div class="logo">شبكة الألعاب</div><div class="spinner"></div><div style="color:#aaffdd">طھطظ…ظٹظ„ ط§ظ„ظ…ططھظˆظ‰â€¦</div></div>
+<!-- Loader -->
+<div id="loader"><div class="logo">Games Network</div><div class="spinner"></div><div style="color:#aaffdd">تحميل المحتوى…</div></div>
 
-<!-- مصفوفة القماش -->
+<!-- Matrix Canvas -->
 <canvas id="matrix"></canvas>
 
-<!-- انستغرام عائم -->
-<div class="insta"><a href="https://instagram.com/1x_x.issam.x_x5" target="_blank" title="@1x_x.issam.x_x5">إنستغرام</a></div>
+<!-- Floating Instagram -->
+<div class="insta"><a href="https://instagram.com/1x_x.issam.x_x5" target="_blank" title="@1x_x.issam.x_x5">IG</a></div>
 
-<!-- شريط التنقل العلوي -->
-<الملاحة>
+<!-- Top Nav -->
+<nav>
   <div class="nav-left">
     <div class="brand" onclick="showSection('home')">
       <div class="logo-square">GN</div>
-      شبكة الألعاب
+      <h1>Games Network</h1>
     </div>
     <div class="sections-nav" style="margin-left:14px">
-      <div class="tab active" data-target="home" onclick="showSection('home')">ط§ظ„ط±ط¦ظٹط³ظٹط©</div>
-      <div class="tab" data-target="games" onclick="showSection('games')">ط§ظ„ط£ظ„ط¹ط§ط¨</div>
-      <div class="tab" data-target="trending" onclick="showSection('trending')">ط§ظ„ط£ظƒط«ط± ط´ظ‡ط±ط©</div>
-      <div class="tab" data-target="newest" onclick="showSection('newest')">ط§ظ„ط£ظ„ط¹ط§ط¨ ط§ظ„ط¬ط¯ظٹط¯ط©</div>
-      <div class="tab" data-target="categories" onclick="showSection('categories')">ط§ظ„ط£ظ‚ط³ط§ظ…</div>
-      <div class="tab" data-target="about" onclick="showSection('about')">طظˆظ„ظ†ط§</div>
-      <div class="tab" data-target="contact" onclick="showSection('contact')">طھظˆط§طµظ„</div>
+      <div class="tab active" data-target="home" onclick="showSection('home')">الرئيسية</div>
+      <div class="tab" data-target="games" onclick="showSection('games')">الألعاب</div>
+      <div class="tab" data-target="trending" onclick="showSection('trending')">الأكثر شهرة</div>
+      <div class="tab" data-target="newest" onclick="showSection('newest')">الألعاب الجديدة</div>
+      <div class="tab" data-target="categories" onclick="showSection('categories')">الأقسام</div>
+      <div class="tab" data-target="about" onclick="showSection('about')">حولنا</div>
+      <div class="tab" data-target="contact" onclick="showSection('contact')">تواصل</div>
     </div>
   </div>
 
   <div class="nav-right">
-    <button onclick="showFavorites()">ط§ظ„ظ…ظپط¶ظ„ط© (<span id="favCount">0</span>)</button>
-    <button onclick="scrollTop()">â¤'</button>
+    <button onclick="showFavorites()">المفضلة (<span id="favCount">0</span>)</button>
+    <button onclick="scrollTop()">⤒</button>
   </div>
 </nav>
 
 <div class="container">
-  <الرئيسية>
+  <main>
 
-    <!-- البطل -->
+    <!-- HERO -->
     <section class="page active" id="home">
       <div class="hero">
         <div class="left">
-          <h2>ظ…ط±طط¨ط§ ط¨ظƒ ظپظٹ <span style="color:var(--neon-2)">شبكة الألعاب</span></h2>
-          <p>ط§ظƒطھط´ظپ ط§ظ„ط§ظپ ط§ظ„ط £ظ„ط¹ط§ط¨ ط¹ط¨ط± ظ…ظ†طط§طھ ظ…طھط¹ط¯ط¯ط© â€” طھطظ…ظٹظ… ط £ظ†ظٹظ‚طط طھط¬ط±ط¨ط© ط³ط±ظٹط¹ط© ظˆظ…ظ„ظٹط¦ط© ط¨ط§ظ„طظٹظˆظٹط©.</p>
+          <h2>مرحبا بك في <span style="color:var(--neon-2)">Games Network</span></h2>
+          <p>اكتشف آلاف الألعاب عبر منصات متعددة — تصميم أنيق، تجربة سريعة ومليئة بالحيوية.</p>
           <div style="display:flex;gap:12px;margin-top:14px">
-            <div class="cta" onclick="showSection('games')">ط§ط³طھظƒط´ظپ ط§ظ„ط £ظ„ط¹ط§ط¨ ط§ظ„ط¢ظ†</div>
-            <div class="tab" onclick="showSection('trending')">ًں”¥ ط§ظ„ط£ظƒط«ط± ط´ظ‡ط±ط©</div>
-            <div class="tab" onclick="showSection('newest')">✓ ط§ظ„ط¬ط¯ظٹط¯ط©</div>
+            <div class="cta" onclick="showSection('games')">استكشف الألعاب الآن</div>
+            <div class="tab" onclick="showSection('trending')">🔥 الأكثر شهرة</div>
+            <div class="tab" onclick="showSection('newest')">✨ الجديدة</div>
           </div>
           <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
-            <div style="width:100px;height:100px;border-radius:12px;background:linear-gradient(90deg,var(--neon),var(--neon-2));display:flex;align-items:center;justify-content:center;color:#001;font-weight:800">شعار</div>
-            <div style="color:rgba(255,255,255,0.7)">ط´ط¨ظƒط© ط§ظ„ط £ظ„ط¹ط§ط¨ â€” ظˆط§ط¬ظ‡ط© ط £ظ†ظٹظ‚ط©طŒ ظ…ططھظˆظ‰ ظ…طھط¬ط¯ط¯ طھظ„ظ‚ط§ط¦ظٹط§ظ‹.</div>
+            <div style="width:100px;height:100px;border-radius:12px;background:linear-gradient(90deg,var(--neon),var(--neon-2));display:flex;align-items:center;justify-content:center;color:#001;font-weight:800">LOGO</div>
+            <div style="color:rgba(255,255,255,0.7)">شبكة الألعاب — واجهة أنيقة، محتوى متجدد تلقائياً.</div>
           </div>
         </div>
         <div class="right">
-          <!-- منطقة تسليط الضوء الدوارة -->
+          <!-- rotating highlights area -->
           <img id="heroPreview" src="https://placehold.co/600x360?text=Games+Network" alt="preview" style="width:100%;height:100%;object-fit:cover" />
         </div>
       </div>
-    </القسم>
+    </section>
 
-    <!--الألعاب -->
+    <!-- GAMES -->
     <section class="page" id="games">
-      <h2 style="margin-top:0">ظ…ظƒطھط¨ط© ط§ظ„ط£ظ„ط¹ط§ط¨</h2>
+      <h2 style="margin-top:0">مكتبة الألعاب</h2>
       <div class="games-wrap">
         <aside class="sidebar">
           <div class="filter-group">
-            <label for="searchInput">ط¨طط«</label>
-            <input id="searchInput" placeholder="ط§ط³ظ… ط§ظ„ظ„ط¹ط¨ط©..." oninput="applyFilters()" />
+            <label for="searchInput">بحث</label>
+            <input id="searchInput" placeholder="اسم اللعبة..." oninput="applyFilters()" />
           </div>
           <div class="filter-group">
-            <label>ط§ظ„ظ…ظ†طط©</label>
+            <label>المنصة</label>
             <select id="platformSelect" onchange="applyFilters()">
-              <option value="">ظƒظ„ ط§ظ„ظ…ظ†طμط§طھ</option>
-              <option value="pc">كمبيوتر شخصي</option>
-              <option value="playstation">بلاي ستيشن</option>
-              <option value="xbox">إكس بوكس</option>
-              <option value="نينتندو">نينتندو</option>
-              <option value="android">أندرويد</option>
+              <option value="">كل المنصات</option>
+              <option value="pc">PC</option>
+              <option value="playstation">PlayStation</option>
+              <option value="xbox">Xbox</option>
+              <option value="nintendo">Nintendo</option>
+              <option value="android">Android</option>
             </select>
           </div>
           <div class="filter-group">
-            <label>ط§ظ„ظ†ظˆط¹</label>
+            <label>النوع</label>
             <div class="checkboxes" id="genreChips"></div>
           </div>
           <div style="margin-top:10px;display:flex;gap:8px">
-            <button class="btn-ghost" onclick="resetFilters()">ط¥ط¹ط§ط¯ط©</button>
-            <button class="btn-ghost" onclick="randomFromAll()">ظ„ط¹ط¨ط© ط¹ط´ظˆط§ط¦ظٹط©</button>
+            <button class="btn-ghost" onclick="resetFilters()">إعادة</button>
+            <button class="btn-ghost" onclick="randomFromAll()">لعبة عشوائية</button>
           </div>
-        </جانبا>
+        </aside>
 
         <section style="background:transparent;padding:0;border-radius:0">
           <div id="gamesGrid" class="grid"></div>
           <div style="margin-top:14px;text-align:center">
-            <button class="cta" onclick="loadMoreGames()">طھطظ…ظٹظ„ ط§ظ„ظ…ط²ظٹط¯</button>
+            <button class="cta" onclick="loadMoreGames()">تحميل المزيد</button>
           </div>
-        </القسم>
+        </section>
       </div>
-    </القسم>
+    </section>
 
-    <!-- رائج -->
+    <!-- TRENDING -->
     <section class="page" id="trending">
-      <h2 style="margin-top:0">ط§ظ„ط £ظƒط«ط± ط´ظ‡ط±ط©</h2>
+      <h2 style="margin-top:0">الأكثر شهرة</h2>
       <div id="trendCarousel" class="carousel"></div>
-    </القسم>
+    </section>
 
-    <!-- الأحدث -->
+    <!-- NEWEST -->
     <section class="page" id="newest">
-      <h2 style="margin-top:0">ط§ظ„ط £ظ„ط¹ط§ط¨ ط§ظ„ط¬ط¯ظٹط¯ط©</h2>
+      <h2 style="margin-top:0">الألعاب الجديدة</h2>
       <div id="newCarousel" class="carousel"></div>
-    </القسم>
+    </section>
 
-    <!--الفئات -->
+    <!-- CATEGORIES -->
     <section class="page" id="categories">
-      <h2 style="margin-top:0">ط§ظ„ط £ظ‚ط³ط§ظ…</h2>
+      <h2 style="margin-top:0">الأقسام</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
         <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);text-align:center">
-          <h3>جهاز الكمبيوتر</h3><p>ط جنيه استرليني ظ‚ظˆظ‰ ط§ظ„ط £ظ„ط¹ط§ط¨ ط¹ظ„ظ‰ ط§ظ„طط§ط³ظˆط¨</p>
+          <h3>PC</h3><p>أقوى الألعاب على الحاسوب</p>
         </div>
         <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);text-align:center">
-          <h3>بلاي ستيشن</h3><p>ط¥طµط¯ط§ط±ط§طھ ط¨ظ„ط§ظٹط³طھظٹط´ظ† ط§ظ„ط´ظ‡ظٹط±ط©</p>
+          <h3>PlayStation</h3><p>إصدارات بلايستيشن الشهيرة</p>
         </div>
         <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);text-align:center">
-          <h3>Xbox</h3><p>ط¹ط§ظ„ظ… ط¥ظƒط³ ط¨ظˆظƒط³</p>
+          <h3>Xbox</h3><p>عالم إكس بوكس</p>
         </div>
         <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);text-align:center">
-          <h3>نينتندو</h3><p>ط £ظپط¶ظ„ ط§ظ„ط £ظ„ط¹ط§ط¨ ط§ظ„ظƒظ„ط§ط³ظٹظƒظٹط© ظˆط§ظ„ط¹ط§ط¦ظ„ظٹط©</p>
+          <h3>Nintendo</h3><p>أفضل الألعاب الكلاسيكية والعائلية</p>
         </div>
       </div>
-    </القسم>
+    </section>
 
-    <!-- حول -->
+    <!-- ABOUT -->
     <section class="page" id="about">
-      <h2 style="margin-top:0">شبكة ألعاب</h2>
+      <h2 style="margin-top:0">حول Games Network</h2>
       <p id="aboutText"></p>
-    </القسم>
+    </section>
 
-    <!-- اتصل -->
+    <!-- CONTACT -->
     <section class="page" id="contact">
-      <h2 style="margin-top:0">طھظˆط§طμظ„ ظ…ط¹ظ†ط§</h2>
-      <p>طھظˆط§طμظ„ ظ…ط¹ظ†ط§ ط¹ط¨ط± ط¥ظ†ط³طھط;ط±ط§ظ…: <a href="https://instagram.com/1x_x.issam.x_x5" target="_blank">@1x_x.issam.x_x5</a></p>
+      <h2 style="margin-top:0">تواصل معنا</h2>
+      <p>تواصل معنا عبر إنستغرام: <a href="https://instagram.com/1x_x.issam.x_x5" target="_blank">@1x_x.issam.x_x5</a></p>
       <form id="contactForm" onsubmit="submitContact(event)" style="display:grid;gap:10px;max-width:520px">
-        <input required placeholder="ط§ط³ظ…ظƒ" id="cfName" style="padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon)" />
-        <input required placeholder="ط¨ط±ظٹط¯ظƒ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ" id="cfEmail" style="padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon)" />
-        <textarea required placeholder="ط±ط³ط§ظ„طھظƒ..." id="cfMsg" rows="5" style="padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon)"></textarea>
-        <div><button class="cta" type="submit">ط¥ط±ط³ط§ظ„</button></div>
+        <input required placeholder="اسمك" id="cfName" style="padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon)" />
+        <input required placeholder="بريدك الإلكتروني" id="cfEmail" style="padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon)" />
+        <textarea required placeholder="رسالتك..." id="cfMsg" rows="5" style="padding:10px;border-radius:8px;border:none;background:#071218;color:var(--neon)"></textarea>
+        <div><button class="cta" type="submit">إرسال</button></div>
       </form>
-    </القسم>
+    </section>
 
   </main>
 
-  <!-- تذييل -->
-  <التذييل>
+  <!-- Footer -->
+  <footer>
     <div class="links">
-      <a href="#" onclick="showSection('home')">ط§ظ„ط±ط¦ظٹط³ظٹط©</a>
-      <a href="#" onclick="showSection('games')">ط§ظ„ط£ظ„ط¹ط§ط¨</a>
-      <a href="#" onclick="showSection('contact')">طھظˆط§طµظ„</a>
+      <a href="#" onclick="showSection('home')">الرئيسية</a>
+      <a href="#" onclick="showSection('games')">الألعاب</a>
+      <a href="#" onclick="showSection('contact')">تواصل</a>
     </div>
-    <div class="copy">آ© شبكة الألعاب – ط¬ظ…ظٹط¹ ط§ظ„طظ‚ظˆظ‚ ظ…طظپظˆط¸ط©</div>
-  </تذييل>
+    <div class="copy">© Games Network — جميع الحقوق محفوظة</div>
+  </footer>
 </div>
 
-<!-- تفاصيل النموذج -->
+<!-- Modal details -->
 <div id="modal" class="modal" onclick="closeModal(event)">
   <div class="modal-card" onclick="event.stopPropagation()">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
       <h3 id="m-title"></h3>
-      <div><button class="close-btn" onclick="closeModal()">ط¥ط؛ظ„ط§ظ‚</button></div>
+      <div><button class="close-btn" onclick="closeModal()">إغلاق</button></div>
     </div>
     <div class="modal-grid">
       <div><img id="m-img" src=""></div>
@@ -300,303 +300,303 @@
         <p id="m-desc" style="color:rgba(255,255,255,0.8)"></p>
         <p id="m-meta" style="color:var(--muted)"></p>
         <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-          <a id="m-link" class="cta" href="#" target="_blank">ط§ط°ظ‡ط¨ ظ„ظ„طھظپط§طµظٹظ„</a>
-          <button class="btn-ghost" onclick="toggleFavModal()">âک† طظپط¸</button>
+          <a id="m-link" class="cta" href="#" target="_blank">اذهب للتفاصيل</a>
+          <button class="btn-ghost" onclick="toggleFavModal()">☆ حفظ</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<النص>
+<script>
 /* -------------------------
-   التكوين والحالة
+   Config and state
    ------------------------- */
 const RAWG_KEY = '02fafcff858c4e7a8958fcc861a23fd8';
-دع الصفحة = 1؛
-دع gamesList = [];
-دع المفضلة = JSON.parse(localStorage.getItem('gn_favs')||'[]');
+let page = 1;
+let gamesList = [];
+let favorites = JSON.parse(localStorage.getItem('gn_favs')||'[]');
 
-/* جدوى */
-دالة el(id){ إرجاع document.getElementById(id) }
-دالة showSection(id){
-  المستند.استعلام تحديد الكل('.صفحة').لكل(p=>p.classList.إزالة('نشط'));
+/* utility */
+function el(id){ return document.getElementById(id) }
+function showSection(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pageEl = document.getElementById(id);
-  إذا (pageEl) {pageEl.classList.add ('نشط');}
-  // تحديث حالة علامة التبويب النشطة
-  document.querySelectorAll('.sections-nav .tab').forEach(t=>t.classList.remove('نشط'));
-  document.querySelectorAll('.sections-nav .tab').forEach(t=>{ if(t.dataset.target===id) t.classList.add('نشط')});
-  window.scrollTo({أعلى:0، السلوك: 'سلس'});
+  if(pageEl){pageEl.classList.add('active');}
+  // update tab active state
+  document.querySelectorAll('.sections-nav .tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sections-nav .tab').forEach(t=>{ if(t.dataset.target===id) t.classList.add('active')});
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-/* تشغيل صوت واجهة المستخدم الصغيرة */
-دالة uiBeep(){
-  يحاول{
-    ثابت ctx = جديد (نافذة. سياق الصوت || نافذة. سياق الصوت على شبكة الإنترنت)();
-    ثابت o = ctx.createOscillator(); ثابت g = ctx.createGain();
+/* play tiny UI sound */
+function uiBeep(){
+  try{
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const o = ctx.createOscillator(); const g = ctx.createGain();
     o.type='sine'; o.frequency.value=880; g.gain.value=0.02; o.connect(g); g.connect(ctx.destination); o.start();
     setTimeout(()=>{ o.stop(); ctx.close(); }, 90);
   }catch(e){}
 }
 
 /* -------------------------
-   إخفاء المحمل بعد الاستعداد
+   Loader hide after ready
    ------------------------- */
-دالة إخفاء المُحمل (){ document.getElementById('المُحمل').style.display='لا شيء'; }
+function hideLoader(){ document.getElementById('loader').style.display='none'; }
 
 /* -------------------------
-   خلفية المصفوفة
+   Matrix background
    ------------------------- */
-ثابت قماش = document.getElementById('المصفوفة');
-ثابت ctx = قماش.getContext('2d');
-دالة setupCanvas(){
-  عرض القماش = عرض النافذة الداخلي؛
-  ارتفاع القماش = ارتفاع النافذة الداخلي؛
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+function setupCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 setupCanvas();
-window.addEventListener('تغيير الحجم', ()=>{ setupCanvas(); initMatrix(); });
-أحرف ثابتة = '01مپ‚مپ«مپ†مپˆمپٹم‚م‚¤م‚¦م‚¨م‚ھABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-دع حجم الخط = 14؛
-دع الأعمدة = Math.floor(canvas.width / fontSize)؛
-دع القطرات = []؛
-دالة initMatrix(){
-  حجم الخط = Math.max(12، Math.floor(عرض النافذة الداخلي / 140));
-  الأعمدة = Math.floor(عرض القماش / حجم الخط)؛
-  قطرات = Array(columns).fill(1);
+window.addEventListener('resize', ()=>{ setupCanvas(); initMatrix(); });
+const letters = '01あいうえおアイウエオABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+let fontSize = 14;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = [];
+function initMatrix(){
+  fontSize = Math.max(12, Math.floor(window.innerWidth / 140));
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(1);
 }
 initMatrix();
-دالة drawMatrix(){
+function drawMatrix(){
   ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-  ctx.fillRect(0,0,عرض القماش,ارتفاع القماش);
+  ctx.fillRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle = '#00ff99';
-  ctx.font = fontSize + 'مسافة أحادية بكسل';
-  بالنسبة إلى (دع i = 0؛ i < طول القطرات؛ i++) {
-    نص ثابت = letters[Math.floor(Math.random()*letters.length)];
-    ctx.fillText(النص، i*حجم الخط، قطرات[i]*حجم الخط)؛
-    إذا (قطرات [i] * حجم الخط > ارتفاع القماش و Math.random() > 0.975) قطرات [i] = 0؛
-    قطرات[i]++;
+  ctx.font = fontSize + 'px monospace';
+  for(let i=0;i<drops.length;i++){
+    const text = letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+    if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i]=0;
+    drops[i]++;
   }
 }
-setInterval(رسم المصفوفة، 50)؛
+setInterval(drawMatrix, 50);
 
 /* -------------------------
-   جلب الألعاب (RAWG)
+   Fetching Games (RAWG)
    ------------------------- */
-دالة غير متزامنة fetchGames(reset=false){
-  إذا (إعادة تعيين) { الصفحة = 1؛ قائمة الألعاب = []؛ المستند. getElementById ('شبكة الألعاب'). HTML الداخلية = ''؛ }
-  ثابت url = عنوان URL جديد('https://api.rawg.io/api/games');
+async function fetchGames(reset=false){
+  if(reset){ page=1; gamesList=[]; document.getElementById('gamesGrid').innerHTML=''; }
+  const url = new URL('https://api.rawg.io/api/games');
   url.searchParams.set('key', RAWG_KEY);
-  url.searchParams.set('الصفحة', الصفحة);
-  url.searchParams.set('حجم الصفحة'، 20)؛
-  // يمكنك إضافة الترتيب أو المرشحات لاحقًا
-  يحاول{
-    ثابت res = انتظار fetch(url)؛
-    البيانات الثابتة = await res.json();
-    النتائج الثابتة = data.results || [];
-    gamesList = gamesList.concat(النتائج)؛
-    renderGrid(النتائج)؛
-    الصفحة++؛
+  url.searchParams.set('page', page);
+  url.searchParams.set('page_size', 20);
+  // you can add ordering or filters later
+  try{
+    const res = await fetch(url);
+    const data = await res.json();
+    const results = data.results || [];
+    gamesList = gamesList.concat(results);
+    renderGrid(results);
+    page++;
   }catch(e){
-    console.error('خطأ في الجلب',e);
-  }أخيراً{
-    إخفاء المُحمل();
-    تحديث عدد المفضلة();
+    console.error('fetch error',e);
+  }finally{
+    hideLoader();
+    updateFavCount();
   }
 }
-دالة renderGrid(العناصر){
-  حاوية ثابتة = document.getElementById('gamesGrid');
-  العناصر.لكل(g => {
-    تصنيف ثابت = Math.round((g.rating||0)*10); // 0-100
-    ثابت fillW = Math.min(100، التقييم)؛
-    منصات ثابتة = (g.parent_platforms||[]).map(p=>p.platform.slug);
-    ثابت pHtml = المنصات. شريحة (0،3). خريطة (s => `<span class="plat">${platformEmoji(s) </span> `). الانضمام ('');
-    ثابت في المفضلة = المفضلة.يتضمن(g.id)؛
-    بطاقة ثابتة = document.createElement('div'); card.className='card';
+function renderGrid(items){
+  const container = document.getElementById('gamesGrid');
+  items.forEach(g => {
+    const rating = Math.round((g.rating||0)*10); // 0-100
+    const fillW = Math.min(100, rating);
+    const platforms = (g.parent_platforms||[]).map(p=>p.platform.slug);
+    const pHtml = platforms.slice(0,3).map(s=>`<span class="plat">${platformEmoji(s)}</span>`).join('');
+    const inFav = favorites.includes(g.id);
+    const card = document.createElement('div'); card.className='card';
     card.innerHTML = `
       <div class="thumb" style="background-image:url('${g.background_image || 'https://placehold.co/600x360?text=No+Image'}');background-size:cover"></div>
       <div class="card-body">
-        <h3>${escapeHtml(g.name)</h3>
+        <h3>${escapeHtml(g.name)}</h3>
         <div class="meta">
-          <div class="rating"><div class="bar"><div class="fill" style="width:${fillW}%"></div></div><div style="font-size:12px;color:var(--muted)">${g.rating||0}âک…</div></div>
+          <div class="rating"><div class="bar"><div class="fill" style="width:${fillW}%"></div></div><div style="font-size:12px;color:var(--muted)">${g.rating||0}★</div></div>
           <div class="platforms">${pHtml}</div>
         </div>
         <div style="display:flex;align-items:center;margin-top:8px">
-          <button class="btn-ghost" onclick='openModal(${JSON.stringify(g.id)})'>طھظپط§طµظٹظ„</button>
-          <a class="btn-ghost" href="https://rawg.io/games/${g.slug}" target="_blank" style="margin-left:8px">طµظپط©</a>
-          <div class="fav" title="طظپط¸ ط¨ط§ظ„ظ…طپط¶ظ„ط©" onclick="toggleFav(${g.id}, ${JSON.stringify(g.name)})" style="margin-inline-start:auto">${inFav?'âک…':'âک†'}</div>
+          <button class="btn-ghost" onclick='openModal(${JSON.stringify(g.id)})'>تفاصيل</button>
+          <a class="btn-ghost" href="https://rawg.io/games/${g.slug}" target="_blank" style="margin-left:8px">صفحة</a>
+          <div class="fav" title="حفظ بالمفضلة" onclick="toggleFav(${g.id}, ${JSON.stringify(g.name)})" style="margin-inline-start:auto">${inFav?'★':'☆'}</div>
         </div>
       </div>`;
-    الحاوية.appendChild(البطاقة)؛
+    container.appendChild(card);
   });
 }
 
-/* هروب صغير */
-دالة escapeHtml(s){ return (s+'').replace(/[&<>"]/g, c=>({'&':'&','<':'<','>':'>','"':'"'}[c])); }
+/* small escape */
+function escapeHtml(s){ return (s+'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
-/*مساعد الرموز التعبيرية للمنصة*/
-وظيفة platformEmoji(slug){
-  إذا لم يتم إرجاع '';
-  إذا (slug.includes('pc')) إرجاع 'ًں'»';
-  إذا (slug.includes('playstation')) قم بإرجاع 'ًںژ®';
-  if(slug.includes('xbox')) return 'ًں•¹ï¸ڈ';
-  إذا (slug.includes('android')||slug.includes('ios')) إرجاع 'ًں“±';
-  إذا (slug.includes('nintendo')) قم بإرجاع 'ًںژ¯';
-  العودة 'ًںژ®';
+/* platform emoji helper */
+function platformEmoji(slug){
+  if(!slug) return '';
+  if(slug.includes('pc')) return '💻';
+  if(slug.includes('playstation')) return '🎮';
+  if(slug.includes('xbox')) return '🕹️';
+  if(slug.includes('android')||slug.includes('ios')) return '📱';
+  if(slug.includes('nintendo')) return '🎯';
+  return '🎮';
 }
 
-/* تحميل المزيد */
-دالة loadMoreGames(){ fetchGames(); uiBeep(); }
+/* load more */
+function loadMoreGames(){ fetchGames(); uiBeep(); }
 
-/* تطبيق المرشحات (البحث + المنصة + النوع) */
-دالة applyFilters(){
-  ثابت q = document.getElementById('بحث الإدخال').value.toLowerCase().trim();
-  ثابت المنصة = document.getElementById('platformSelect').value؛
-  دع filtered = gamesList.slice();
-  إذا (q) تم التصفية = تم التصفية (g => g.name.toLowerCase().includes (q));
-  إذا تم تصفية (المنصة) = تصفية. تصفية (g => (g. المنصات الأصلية ||[]). بعض (p => p. المنصة. slug. يتضمن (المنصة)));
+/* Apply filters (search + platform + genre) */
+function applyFilters(){
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const platform = document.getElementById('platformSelect').value;
+  let filtered = gamesList.slice();
+  if(q) filtered = filtered.filter(g=>g.name.toLowerCase().includes(q));
+  if(platform) filtered = filtered.filter(g => (g.parent_platforms||[]).some(p=>p.platform.slug.includes(platform)));
   document.getElementById('gamesGrid').innerHTML='';
-  renderGrid(مفلترة)؛
+  renderGrid(filtered);
 }
 
-/* إعادة تعيين المرشحات */
-وظيفة resetFilters(){
-  المستند.getElementById('مدخل البحث').القيمة='';
-  المستند.getElementById('اختيار المنصة').القيمة='';
+/* reset filters */
+function resetFilters(){
+  document.getElementById('searchInput').value='';
+  document.getElementById('platformSelect').value='';
   document.getElementById('gamesGrid').innerHTML=''; renderGrid(gamesList); uiBeep();
 }
 
-/*المفضلة*/
-وظيفة تبديل Fav(المعرف، الاسم){
-  ثابت idx = المفضلة.indexOf(المعرف)؛
-  إذا (idx === -1) { المفضلة. ادفع (المعرف) ؛ } وإلا { المفضلة. الوصل (idx، 1) ؛ }
-  localStorage.setItem('gn_favs', JSON.stringify(المفضلة));
-  تحديث عدد المفضلة();
-  // تحديث العرض بسرعة
+/* favorites */
+function toggleFav(id,name){
+  const idx = favorites.indexOf(id);
+  if(idx === -1){ favorites.push(id); } else { favorites.splice(idx,1); }
+  localStorage.setItem('gn_favs', JSON.stringify(favorites));
+  updateFavCount();
+  // refresh view quickly
   document.getElementById('gamesGrid').innerHTML=''; renderGrid(gamesList);
   uiBeep();
 }
-دالة updateFavCount(){ el('favCount').innerText = favorites.length; }
-دالة إظهار المفضلة (){
-  if(!favorites.length){ تنبيه('ظ„ط§ طھظˆط¬ط¯ ط £ظ„ط¹ط§ط¨ ظ…طظپظˆط¸ط©'); return; }
-  // جلب تفاصيل المفضلة (أو البحث عنها في قائمة الألعاب)
-  ثابت favDetails = gamesList.filter(g=>favorites.includes(g.id));
-  إذا (طول التفاصيل المفضلة) {
+function updateFavCount(){ el('favCount').innerText = favorites.length; }
+function showFavorites(){
+  if(!favorites.length){ alert('لا توجد ألعاب محفوظة'); return; }
+  // fetch details for favorites (or find in gamesList)
+  const favDetails = gamesList.filter(g=>favorites.includes(g.id));
+  if(favDetails.length){
     document.getElementById('gamesGrid').innerHTML=''; renderGrid(favDetails);
-    عرض القسم('الألعاب');
-  }آخر{
-    تنبيه('ط§ظ„ظ…ظپط¶ظ„ط© ط؛ظٹط± ظ…طھط§طط© ط§ظ„ط˨ظ† (ط±ط¨ظ…ط§ طھططھط§ط¬ طھطظ…ظٹظ„ ط§ظ„ظ…ط²ظٹط¯)');
+    showSection('games');
+  }else{
+    alert('المفضلة غير متاحة الآن (ربما تحتاج تحميل المزيد)');
   }
 }
 
-/* فتح/إغلاق النموذج حسب المعرف */
-دالة غير متزامنة openModal(id){
+/* modal open/close by id */
+async function openModal(id){
   uiBeep();
-  ثابت نموذجي = document.getElementById('نموذجي');
-  modal.classList.add('فتح');
-  بطاقة ثابتة = (gamesList.find(g=>g.id===id));
-  إذا لم تكن البطاقة
-    // حاول جلب لعبة واحدة
-    يحاول{
-      ثابت res = انتظار جلب (`https://api.rawg.io/api/games/${id}?key=${RAWG_KEY}`);
-      البيانات الثابتة = await res.json();
-      populateModal(البيانات)؛
+  const modal = document.getElementById('modal');
+  modal.classList.add('open');
+  const card = (gamesList.find(g=>g.id===id));
+  if(!card){
+    // try fetch single game
+    try{
+      const res = await fetch(`https://api.rawg.io/api/games/${id}?key=${RAWG_KEY}`);
+      const data = await res.json();
+      populateModal(data);
     }catch(e){ console.error(e) }
-  } وإلا قم بتعبئة Modal(البطاقة)؛
+  } else populateModal(card);
 }
-دالة populateModal(g){
+function populateModal(g){
   el('m-title').innerText = g.name;
   el('m-img').src = g.background_image || 'https://placehold.co/600x360?text=No+Image';
-  el('m-desc').innerText = g.description_raw ؟ g.description_raw.slice(0,400)+'...' : (g.slug||'') ;
-  el('m-meta').innerText = `ط§ظ„ظ…ظ†طµط§طھ: ${(g.parent_platforms||[]).map(p=>p.platform.name).join(' â€¢ ')}\nطھط§ط±ظٹط® ط§ظ„ط¥طµط¯ط§ط±: ${g.released || 'ط؛ظٹط± ظ…ط¹ط±ظˆظپ'}`;
+  el('m-desc').innerText = g.description_raw ? g.description_raw.slice(0,400)+'...' : (g.slug||'') ;
+  el('m-meta').innerText = `المنصات: ${(g.parent_platforms||[]).map(p=>p.platform.name).join(' • ')}\nتاريخ الإصدار: ${g.released || 'غير معروف'}`;
   el('m-link').href = 'https://rawg.io/games/'+(g.slug||g.id);
 }
-دالة closeModal(e){
-  إذا لم يكن (e || e.target.classList.contains('modal') || e.target.classList.contains('إغلاق الزر')) {
-    المستند.getElementById('نموذجي').classList.remove('فتح');
+function closeModal(e){
+  if(!e || e.target.classList.contains('modal') || e.target.classList.contains('close-btn')) {
+    document.getElementById('modal').classList.remove('open');
   }
 }
-وظيفة toggleFavModal(){
-  عنوان ثابت = el('m-title').innerText؛
-  // البحث عن معرف حسب العنوان
-  ثابت g = قائمة الألعاب. البحث (x => x. الاسم === العنوان)؛
-  إذا (g) تبديل المفضل (g.id، g.name)؛
+function toggleFavModal(){
+  const title = el('m-title').innerText;
+  // find id by title
+  const g = gamesList.find(x=>x.name===title);
+  if(g) toggleFav(g.id,g.name);
 }
 
-/* أحدث و أحدث الدوارات */
-دالة غير متزامنة fetchTrending(){
-  يحاول{
-    ثابت res = انتظار جلب (`https://api.rawg.io/api/games/lists/popular?key=${RAWG_KEY}&page_size=12`);
-    البيانات الثابتة = await res.json();
+/* Trending and Newest carousels */
+async function fetchTrending(){
+  try{
+    const res = await fetch(`https://api.rawg.io/api/games/lists/popular?key=${RAWG_KEY}&page_size=12`);
+    const data = await res.json();
     renderCarousel('trendCarousel', data.results||[]);
   }catch(e){ console.error(e) }
 }
-دالة غير متزامنة fetchNewest(){
-  يحاول{
-    ثابت url = عنوان URL جديد('https://api.rawg.io/api/games');
+async function fetchNewest(){
+  try{
+    const url = new URL('https://api.rawg.io/api/games');
     url.searchParams.set('key', RAWG_KEY);
     url.searchParams.set('ordering','-released');
-    url.searchParams.set('حجم الصفحة',12);
-    ثابت res = انتظار fetch(url)؛
-    البيانات الثابتة = await res.json();
+    url.searchParams.set('page_size',12);
+    const res = await fetch(url);
+    const data = await res.json();
     renderCarousel('newCarousel', data.results||[]);
   }catch(e){ console.error(e) }
 }
-دالة renderCarousel(id, items){
-  ثابت c = document.getElementById(id);
+function renderCarousel(id, items){
+  const c = document.getElementById(id);
   c.innerHTML = '';
-  العناصر.لكل(g=>{
-    ثابت div = document.createElement('div'); div.className='بطاقة دائرية';
-    div.innerHTML = `<div style="position:relative"><div class="badge">${g.added?('ًں”¥'):('')}</div><img src="${g.background_image || 'https://placehold.co/600x360'}" style="width:220px;height:120px;object-fit:cover"/></div>
-      <div style="padding:10px"><strong>${g.name}</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">${g.released||''}</div><div style="margin-top:8px"><a class="btn-ghost" href="https://rawg.io/games/${g.slug}" target="_blank">طھظپط§طµظٹظ„</a></div></div>`;
-    ج.appendChild(div);
+  items.forEach(g=>{
+    const div = document.createElement('div'); div.className='carousel-card';
+    div.innerHTML = `<div style="position:relative"><div class="badge">${g.added?('🔥'):('')}</div><img src="${g.background_image || 'https://placehold.co/600x360'}" style="width:220px;height:120px;object-fit:cover"/></div>
+      <div style="padding:10px"><strong>${g.name}</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">${g.released||''}</div><div style="margin-top:8px"><a class="btn-ghost" href="https://rawg.io/games/${g.slug}" target="_blank">تفاصيل</a></div></div>`;
+    c.appendChild(div);
   });
 }
 
-/* حول الآلة الكاتبة */
-const aboutText = "شبكة الألعاب – ظ…ظ†طμط© طھط¬ظ…ط¹ ط§ظ„ط £ظ„ط¹ط§ط¨ ظ…ظ† ظ…طط§ط¯ط± ظ…ظˆط«ظˆظ‚ط© ظˆطھط¹ط±ط¶ظ‡ط§ ط¨طھطμظ…ظٹظ… ط £ظ†ظٹظ‚ ظˆط³ظ‡ظ”. ط§ظ„ط¬ط¯ظٹط¯ ظٹظˆظ…ظٹط§ظ‹.”;
-(وظيفة typeWriter(){
-  ثابت elA = document.getElementById('حول النص');
-  دع i=0؛
-  دالة الخطوة () { إذا (i <= aboutText.length) { elA.innerText = aboutText.slice (0، i++)؛ setTimeout (الخطوة، 28) } }
-  خطوة()؛
+/* about typewriter */
+const aboutText = "Games Network — منصة تجمع الألعاب من مصادر موثوقة وتعرضها بتصميم أنيق وسهل. تصفّح، احفظ مفضلاتك، واكتشف الجديد يومياً.";
+(function typeWriter(){
+  const elA = document.getElementById('aboutText');
+  let i=0;
+  function step(){ if(i<=aboutText.length){ elA.innerText = aboutText.slice(0,i++); setTimeout(step,28) } }
+  step();
 })();
 
-/* نموذج الاتصال (وهمي) */
-دالة submitContact(e){
-  هـ. منع الافتراضي();
-  تنبيه('طھظ… ط§ط³طھظ‹ط§ظ… ط§ظ‹ط±ط³ط§ظ‹ط©. ط´ظƒط±ط§ظ‹ ظطھظˆط§طظ„ظƒ!');
-  المستند.getElementById('نموذج الاتصال').إعادة تعيين();
+/* contact form (dummy) */
+function submitContact(e){
+  e.preventDefault();
+  alert('تم استلام الرسالة. شكراً لتواصلك!');
+  document.getElementById('contactForm').reset();
 }
 
-/* لعبة عشوائية من القائمة المحملة */
-دالة randomFromAll(){
-  if(!gamesList.length){ تنبيه('ط§ظ†طھط¸ط± طھطظ…ظٹظ„ ط§ظ„ط £ظ„ط¹ط§ط¨'); return; }
-  ثابت g = قائمة الألعاب[Math.floor(Math.random()*gamesList.length)];
+/* random game from loaded list */
+function randomFromAll(){
+  if(!gamesList.length){ alert('انتظر تحميل الألعاب'); return; }
+  const g = gamesList[Math.floor(Math.random()*gamesList.length)];
   openModal(g.id);
 }
 
-/* انتقل إلى الأعلى */
-دالة scrollTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+/* scroll to top */
+function scrollTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
 
-/* التهيئة */
-(دالة غير متزامنة initAll(){
-  انتظر fetchGames();
-  جلب الأحدث();
-  // ملء الأنواع من النتائج الأولية
-  الأنواع الثابتة = مجموعة جديدة();
-  (قائمة الألعاب||[]).لكل(g => (g.genres||[]).لكل(x=>genres.add(x.name)));
-  رقائق ثابتة = document.getElementById('genreChips');
-  الأنواع. لكل (g => { ثابت ج = وثيقة. إنشاء العنصر ('div')؛ ج. اسم الفئة = 'رقاقة'؛ ج. النص الداخلي = g؛ ج. عند النقر = () => { وثيقة. الحصول على العنصر حسب معرف ('إدخال البحث'). القيمة = g؛ تطبيق المرشحات ()}؛ رقائق. تطبيق الطفل (ج) });
+/* init */
+(async function initAll(){
+  await fetchGames();
+  fetchTrending(); fetchNewest();
+  // populate genres from initial results
+  const genres = new Set();
+  (gamesList||[]).forEach(g => (g.genres||[]).forEach(x=>genres.add(x.name)));
+  const chips = document.getElementById('genreChips');
+  genres.forEach(g=>{ const c=document.createElement('div'); c.className='chip'; c.innerText=g; c.onclick=()=>{document.getElementById('searchInput').value=g; applyFilters()}; chips.appendChild(c) });
 
-  // إخفاء المحمل بعد مرور بعض الوقت
-  setTimeout(إخفاء المُحمل،900)؛
+  // hide loader after some time
+  setTimeout(hideLoader,900);
 })();
 
-/* تحديث عدد المفضلات الأولي */
-تحديث عدد المفضلة();
+/* update favorites count initial */
+updateFavCount();
 
-/* إخفاء المحمل على نافذة التحميل الاحتياطية */
-setTimeout(إخفاء المُحمل، 4000)؛
+/* hide loader on window load timeout fallback */
+setTimeout(hideLoader,4000);
 </script>
 
 </body>
